@@ -4,23 +4,24 @@ sys.path.append('..')
 import os
 from common.np import *
 
-
-def preprocess(text):
-    text = text.lower()
-    text = text.replace('.', ' .')
-    words = text.split(' ')
+# 1강
+def preprocess(text): # 1강 전처리하는 함수
+    text = text.lower() # 소문자로 바꿔라
+    text = text.replace('.', ' .') # '.'을 ' .'으로 바꾸기 (마침표도 단어처럼 생각하기 위해 .앞에도 띄어쓰기를 해줌.)
+    words = text.split(' ') # 분리해서 리스트로 만들기, 기준은 ' '(blank); text.split()의 default 기준점이 blank 이므로 괄호 안에 비워둬도 됨.
 
     word_to_id = {}
-    id_to_word = {}
+    id_to_word = {} # 공딕셔너리 만드는 이유: 뭔가 채워나가겠다.
     for word in words:
-        if word not in word_to_id:
-            new_id = len(word_to_id)
-            word_to_id[word] = new_id
-            id_to_word[new_id] = word
+        if word not in word_to_id: # word가 word_to_id 사전의 키에 없다면
+            new_id = len(word_to_id) # word_to_id 사전의 길이
+            word_to_id[word] = new_id # word_to_id의 형태 = word: newid
+            id_to_word[new_id] = word # id_to_word의 형태 = newid: word     즉, word_to_id를 거꾸로 한 것.
 
-    corpus = np.array([word_to_id[w] for w in words])
+    corpus = np.array([word_to_id[w] for w in words]) # 결과: words의 단어 하나하나 (즉, 모든 단어_중복ㅇㅋ_에 대해서)에 대해서 word_to_id 사전의 value(newid)를 받아서 list로 만들거임.
+                    # list comprehension, for문의 값을 쌓아서 list로 만들겠다.
 
-    return corpus, word_to_id, id_to_word
+    return corpus, word_to_id, id_to_word # 생각하기: 결국 dic에 들어가는 word들은 words.unique() 혹은 set(words)를 했을 때 나오는 애들임.
 
 
 def cos_similarity(x, y, eps=1e-8):
@@ -95,8 +96,9 @@ def convert_one_hot(corpus, vocab_size):
 
     return one_hot
 
-
-def create_co_matrix(corpus, vocab_size, window_size=1):
+                    # text, # co_matrix의 size == 단어의 unique 개수를 n이라고 할 때 n을 의미함.   co_matrix는 n*n행렬 
+                                            # window_size=1 로 고정
+def create_co_matrix(corpus, vocab_size, window_size=1): # 1강 분포가설에 따라 주변 단어 보는 동시발생 행렬 만드는 함수
     '''동시발생 행렬 생성
 
     :param corpus: 말뭉치(단어 ID 목록)
@@ -104,21 +106,23 @@ def create_co_matrix(corpus, vocab_size, window_size=1):
     :param window_size: 윈도우 크기(윈도우 크기가 1이면 타깃 단어 좌우 한 단어씩이 맥락에 포함)
     :return: 동시발생 행렬
     '''
-    corpus_size = len(corpus)
-    co_matrix = np.zeros((vocab_size, vocab_size), dtype=np.int32)
+    corpus_size = len(corpus) # 말뭉치 내 모든 단어의 수 (즉, 중복 허용)
+    co_matrix = np.zeros((vocab_size, vocab_size), dtype=np.int32) # 제로행렬 만들어서 채워넣어가기
 
-    for idx, word_id in enumerate(corpus):
-        for i in range(1, window_size + 1):
-            left_idx = idx - i
-            right_idx = idx + i
+    for idx, word_id in enumerate(corpus): # 순서 같이 나오게 해주는 enumerate
+        for i in range(1, window_size + 1): # 우리 예에서는 window_size = 1로 잡아서 i는 range 1부터 2 미만의 정수... 즉, 1밖에 안됨.
+            left_idx = idx - i # 맨 처음 loop에서는 0-1이라 -1 이므로 left_idx 없는 것. 위치상 0번째 보다 왼쪽 idx는 없으므로
+            right_idx = idx + i # 맨 처음 loop에서는 0+1이라 +1 이므로 첫 loop부터 idx 가능.
+                                # 그러나 마지막에 조심해야함. 마지막 word의 오른쪽은 없음.
+                                # 그래서 조건문이 아래와 같음. left는 0보다 크거나 같을 때, right는 corpus_size보다 작을 때
 
             if left_idx >= 0:
                 left_word_id = corpus[left_idx]
-                co_matrix[word_id, left_word_id] += 1
+                co_matrix[word_id, left_word_id] += 1 # 맨 처음 loop기준 설명: zero_mat의 (1,0)자리에 +1 하란 소리.
 
             if right_idx < corpus_size:
                 right_word_id = corpus[right_idx]
-                co_matrix[word_id, right_word_id] += 1
+                co_matrix[word_id, right_word_id] += 1 # 맨 처음 loop기준 설명: zero_mat의 (1,2)자리에 +1 하란 소리.
 
     return co_matrix
 
