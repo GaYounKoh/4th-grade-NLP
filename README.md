@@ -45,3 +45,6 @@ ref. 사이토코키 밑바닥부터 시작하는 딥러닝 <br>
 ./common/functions.py <br>
 ./ch04/negative_sampling_layer.py <br>
 <br>
+
+# 8강
+* RNN은 다음 단어 예측하는 도구
