@@ -57,8 +57,17 @@ ref. 사이토코키 밑바닥부터 시작하는 딥러닝 <br>
 # 10강 (220520)
 lstm의 혁신적인 점 <br>
 잊어버리는 장치를 달았다. <br>
-니체의 잠언: 망각은 진전을 낳는다. <br>
-그동안엔 정보를 추가할 생각만 했는데 잊어버릴 생각을 하게 된 게 lstm <br>
+<br>
 
-그렇다고 잊기만 하면 안되니까 추가하는 input gate를 가짐.
-input gate는 정보를 선별 (가치있는 정보들만 집어넣음.)
+## 니체의 잠언: <span style = 'color:red'> **망각은 진전을 낳는다.** </span> <br>
+<br>
+
+그동안엔 정보를 추가할 생각만 했는데 잊어버릴 생각을 하게 된 게 lstm <br>
+<br>
+
+그렇다고 잊기만 하면 안되니까 추가하는 input gate를 가짐. <br>
+<span style = 'color:red'> <font size = 4> ***input gate***</font></span>는 정보를 선별 (가치있는 정보들만 집어넣음.) <br>
+
+
+적절히 잊어버리고 적절히 추가
+그 <span style = 'color:red'>**'적절히'**</span>의 밸브는 weight와 bias가 조절
