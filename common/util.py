@@ -267,7 +267,7 @@ def eval_seq2seq(model, question, correct, id_to_char,
 
     return 1 if guess == correct else 0
 
-
+# 6강
 def analogy(a, b, c, word_to_id, id_to_word, word_matrix, top=5, answer=None):
     for word in (a, b, c):
         if word not in word_to_id:

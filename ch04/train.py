@@ -37,14 +37,14 @@ optimizer = Adam()
 trainer = Trainer(model, optimizer)
 
 # 학습 시작
-trainer.fit(contexts, target, max_epoch, batch_size)
+trainer.fit(contexts, target, max_epoch, batch_size) # 입력데이터 context와 라벨 target이 필요
 trainer.plot()
 
 # 나중에 사용할 수 있도록 필요한 데이터 저장
-word_vecs = model.word_vecs
+word_vecs = model.word_vecs # word_vecs: 훈련이 끝났을 때 input 벡터들
 if config.GPU:
     word_vecs = to_cpu(word_vecs)
-params = {}
+params = {} # 공딕셔너리
 params['word_vecs'] = word_vecs.astype(np.float16)
 params['word_to_id'] = word_to_id
 params['id_to_word'] = id_to_word

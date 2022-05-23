@@ -16,7 +16,7 @@ class Trainer:
         self.eval_interval = None
         self.current_epoch = 0
 
-    def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20):
+    def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20): # 훈련할 때 쓰는 method
         data_size = len(x)
         max_iters = data_size // batch_size
         self.eval_interval = eval_interval
@@ -56,7 +56,7 @@ class Trainer:
 
             self.current_epoch += 1
 
-    def plot(self, ylim=None):
+    def plot(self, ylim=None): # 그림 그릴 때 쓰는 method
         x = numpy.arange(len(self.loss_list))
         if ylim is not None:
             plt.ylim(*ylim)
