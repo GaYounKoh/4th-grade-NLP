@@ -97,11 +97,11 @@ os.mkdir('directory')
 >> Matmul class (Affine층과 달리 bias 벡터 없음.)
 
 ./ch03/simple_cbow.py <br>
-<br>
+--- <br>
 ./common/trainer.py <br>
 ./ch03/train.py <br>
 ./common/util.py <br>
-<br>
+--- <br>
 ./ch03/simple_skip_gram.py <br>
 ./common/layers.py <br>
 ./ch03/train.py <br>
@@ -137,12 +137,14 @@ os.mkdir('directory')
 
 # 8강 RNN층의 시간에 대한 역전파 (220506)
 * RNN은 다음 단어 예측하는 도구 <br>
+
 ./common/time_layers.py ~ TimeRNN class <br>
 <br>
 
 # 9강 RNN 언어모델의 구현과 학습
-9-10강 어려움. <br>
-./common/time_layers.py ~ TimeEmbedding class, TimeAffine class, TimeSoftmaxWithLoss <br>
+* 9-10강 어려움. <br>
+
+./common/time_layers.py ~ TimeEmbedding class, TimeAffine class, TimeSoftmaxWithLoss class <br>
 ./ch05/simple_rnnlm.py <br>
 ./ch05/train_custom_loop.py <br>
 train custom loop data.py <br>
@@ -151,8 +153,9 @@ train custom loop data.py <br>
 <br>
 
 # 10강 LSTM (220520)
-lstm의 혁신적인 점 <br>
+* *lstm의 혁신적인 점 <br>
 잊어버리는 장치를 달았다. <br>
+
 ./ch06/rnn_gradient_graph.py <br>
 ./ch06/clip_grads.py <br>
 ./common/time_layers.py ~ LSTM class TimeLSTM class <br>
@@ -169,11 +172,22 @@ lstm의 혁신적인 점 <br>
 
 
 적절히 잊어버리고 적절히 추가
-그 <span style = 'color:red'>**'적절히'**</span>의 밸브는 weight와 bias가 조절
+그 <span style = 'color:red'>**'적절히'**</span>의 밸브는 weight와 bias가 조절 <br>
 <br>
 
 
 # 11강 RNN 언어모델의 개선 (LSTM, multi-layer, drop-out, weight tying) (220527)
+./ch06/rnnlm.py <br>
+./ch06/train_rnnlm.py <br>
+./ch06/eval.py ~ model을 Rnnlm()로<br>
+./common/base_model.py <br>
+--- <br>
+./ch06/better_rnnlm.py <br>
+./ch06/train_better_rnnlm.py <br>
+./common/time_layers.py ~ TimeDropout class <br>
+./ch06/eval.py ~ model을 BetterRnnlm()으로 바꾸기 <br>
+<br>
+
 drop out: 랜덤하게 끊는 것. <br>
 세로로? 가로로? <br>
 
@@ -188,16 +202,6 @@ drop out은 test할 때는 죽이지 않음 (죽이진 않고 사이즈 재조�
 녹강에서 설명안한 reset state (2번 문제와 3번 문제 사이에 hidden, cell state 초기화를 해줘야 함.) <br>
 
 층을 깊게 쌓으면 문제가 발생함. <br>
-
-./ch06/rnnlm.py <br>
-./ch06/train_rnnlm.py <br>
-./ch06/eval.py <br> model을 Rnnlm()
-./common/base_model.py <br>
---- <br>
-./ch06/better_rnnlm.py <br>
-./ch06/train_better_rnnlm.py <br>
-./common/time_layers.py ~ TimeDropout class <br>
-./ch06/eval.py ~ model을 BetterRnnlm()으로 바꾸기 <br>
 <br>
 
 # 12강 문장 생성 (실강 없음.)
