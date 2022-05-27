@@ -80,18 +80,18 @@ os.mkdir('directory')
 <br>
 
 
-# 1강
+# 1강 시소러스와 동시발생행렬
 ./common/util.py <br>
 <br>
 
-# 2강
+# 2강 동시발생행렬 개선 (정보이론과 SVD)
 ./ch02/ppmi.py <br>
 ./ch02/count_method_small.py <br>
 ./ch02/show_ptb.py <br>
 ./ch02/count_method_big.py <br>
 <br>
 
-# 3강
+# 3강 word2vec 프로토타입
 ./common/layers.py <br>
 ./ch03/cbow_predict.py <br>
 >> Matmul class (Affine층과 달리 bias 벡터 없음.)
@@ -107,42 +107,55 @@ os.mkdir('directory')
 ./ch03/train.py <br>
 <br>
 
-# 4강
+# 4강 embedding 층과 embedding dot층
 ./common/layers.py <br>
 ./ch04/negative_sampling_layer.py <br>
 <br>
 
-# 5강
+# 5강 sigmoid with loss층과 negative sampling
 ./common/layers.py <br>
 ./common/functions.py <br>
 ./ch04/negative_sampling_layer.py <br>
 <br>
 
-# 6강
-./ch4/cbow.py <br>
-./ch4/train.py <br>
+# 6강 king - man + woman = queen
+./ch04/cbow.py <br>
+./ch04/train.py <br>
 ./common/trainer.py <br>
 ./ch04/eval.py <br>
 ./common/util.py <br>
 ./ch04/skip_gram.py <br>
 <br>
 
-# 7강
-./common/time_layers.py <br>
+# 🔺🔺----------- 중간 ------------🔺🔺 #
 
+# 🔻🔻----------- 기말 ------------🔻🔻 #
 
+# 7강 순환신경망과 언어모델
+./common/time_layers.py ~ RNN class <br>
+<br>
 
-# 8강 (220506)
+# 8강 RNN층의 시간에 대한 역전파 (220506)
 * RNN은 다음 단어 예측하는 도구 <br>
+./common/time_layers.py ~ TimeRNN class <br>
 <br>
 
-# 9강
+# 9강 RNN 언어모델의 구현과 학습
 9-10강 어려움. <br>
+./common/time_layers.py ~ TimeEmbedding class, TimeAffine class, TimeSoftmaxWithLoss <br>
+./ch05/simple_rnnlm.py <br>
+./ch05/train_custom_loop.py <br>
+train custom loop data.py <br>
+./ch05/train.py <br>
+./trainer.py <br>
 <br>
 
-# 10강 (220520)
+# 10강 LSTM (220520)
 lstm의 혁신적인 점 <br>
 잊어버리는 장치를 달았다. <br>
+./ch06/rnn_gradient_graph.py <br>
+./ch06/clip_grads.py <br>
+./common/time_layers.py ~ LSTM class TimeLSTM class <br>
 <br>
 
 ## 니체의 잠언: <span style = 'color:red'> **망각은 진전을 낳는다.** </span> <br>
@@ -159,24 +172,42 @@ lstm의 혁신적인 점 <br>
 그 <span style = 'color:red'>**'적절히'**</span>의 밸브는 weight와 bias가 조절
 <br>
 
-# 220527 11w
+
+# 11강 RNN 언어모델의 개선 (LSTM, multi-layer, drop-out, weight tying) (220527)
 drop out: 랜덤하게 끊는 것. <br>
 세로로? 가로로? <br>
-<br>
 
 해보니 그렇더라~ 딥러닝의 오류엔 명확한 이유 없는 경우도 있음. <br>
-<br>
 
 파라미터가 많은게 오버피팅을 야기할 수도 있음. <br>
-<br>
 
 딥러닝은 항상 적당히 잘 <br>
-<br>
 
 drop out은 test할 때는 죽이지 않음 (죽이진 않고 사이즈 재조정) <br>
-<br>
 
 녹강에서 설명안한 reset state (2번 문제와 3번 문제 사이에 hidden, cell state 초기화를 해줘야 함.) <br>
-<br>
 
 층을 깊게 쌓으면 문제가 발생함. <br>
+
+./ch06/rnnlm.py <br>
+./ch06/train_rnnlm.py <br>
+./ch06/eval.py <br> model을 Rnnlm()
+./common/base_model.py <br>
+--- <br>
+./ch06/better_rnnlm.py <br>
+./ch06/train_better_rnnlm.py <br>
+./common/time_layers.py ~ TimeDropout class <br>
+./ch06/eval.py ~ model을 BetterRnnlm()으로 바꾸기 <br>
+<br>
+
+# 12강 문장 생성 (실강 없음.)
+./ch07/rnnlm_gen.py <br>
+./ch06/rnnlm.py <br>
+./ch07/generate_text.py <br>
+./ch06/train_better_rnnlm.py <br>
+./ch07/generate_better_test.py <br>
+./common/time_layers.py <br>
+
+# 13강 seq2seq (기계번역과 챗봇의 원리) (실강 없음.)
+./ch07/seq2seq.py <br>
+
