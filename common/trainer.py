@@ -17,6 +17,11 @@ class Trainer:
         self.current_epoch = 0
 
     def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20): # 훈련할 때 쓰는 method
+        # x: data, t: label,
+        # 1 epoch:데이터 전부 소진할 때까지 걸리는 시간, 따라서 epoch은 데이터 전부 소진하는 것을 그만큼 반복하겠다는 의미,
+        # batch_size: 이 만큼씩 묶어서 학습, 한 번 학습할 때 소진하는 data의 개수,
+        # max_grad: max_gradient 그래디언트 상한선 제한함으로써 기울기 폭발 예방,
+        # eval_interval: 이만큼 학습할 때마다 평가해서 출력
         data_size = len(x)
         max_iters = data_size // batch_size
         self.eval_interval = eval_interval
